@@ -37,16 +37,16 @@ public class EmployeesUpdateServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String _token = (String) request.getParameter("_token");
-        if (_token != null && _token.equals(request.getSession().getId())) {
+        String _token = (String)request.getParameter("_token");
+        if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            Employee e = em.find(Employee.class, (Integer) (request.getSession().getAttribute("employee_id")));
+            Employee e = em.find(Employee.class, (Integer)(request.getSession().getAttribute("employee_id")));
 
             // 現在の値と異なる社員番号が入力されていたら
             // 重複チェックを行う指定をする
             Boolean code_duplicate_check = true;
-            if (e.getCode().equals(request.getParameter("code"))) {
+            if(e.getCode().equals(request.getParameter("code"))) {
                 code_duplicate_check = false;
             } else {
                 e.setCode(request.getParameter("code"));
@@ -56,9 +56,9 @@ public class EmployeesUpdateServlet extends HttpServlet {
             // パスワードの入力値チェックを行う指定をする
             Boolean password_check_flag = true;
             String password = request.getParameter("password");
-            if (password == null || password.equals("")) {
+            if(password == null || password.equals("")) {
                 password_check_flag = false;
-            }else {
+            } else {
                 e.setPassword(
                         EncryptUtil.getPasswordEncrypt(
                                 password,
@@ -82,7 +82,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
 
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/edit.jsp");
                 rd.forward(request, response);
-            }else {
+            } else {
                 em.getTransaction().begin();
                 em.getTransaction().commit();
                 em.close();
@@ -92,9 +92,6 @@ public class EmployeesUpdateServlet extends HttpServlet {
 
                 response.sendRedirect(request.getContextPath() + "/employees/index");
             }
-
         }
-
     }
-
 }
