@@ -45,7 +45,7 @@ public class Report {
 
     @Lob
     @Column(name = "content", nullable = false)
-    private String contet;
+    private String content;
 
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
@@ -85,12 +85,12 @@ public class Report {
         this.title = title;
     }
 
-    public String getContet() {
-        return contet;
+    public String getContent() {
+        return content;
     }
 
-    public void setContet(String contet) {
-        this.contet = contet;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Timestamp getCreated_at() {

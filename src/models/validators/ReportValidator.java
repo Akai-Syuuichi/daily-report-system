@@ -14,7 +14,7 @@ public class ReportValidator {
             errors.add(title_error);
         }
 
-        String content_error = _validateContent(r.getContet());
+        String content_error = _validateContent(r.getContent());
         if(!content_error.equals("")) {
             errors.add(content_error);
         }
