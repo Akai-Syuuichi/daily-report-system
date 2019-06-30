@@ -24,6 +24,6 @@
 
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">ログイン</button>
-</form>>
+</form>
 </c:param>
 </c:import>
